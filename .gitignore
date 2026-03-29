@@ -15,11 +15,10 @@ target/
 Thumbs.db
 
 # ─── Data files (too large for Git) ───
-data/rides.csv
-data/rides.arff
+# data/rides.csv
 
 # ─── Persisted models ───
-models/*.model
+# models/*.model
 
 # ─── Logs ───
 *.log
