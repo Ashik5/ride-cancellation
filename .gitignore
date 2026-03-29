@@ -1,0 +1,25 @@
+# ─── Maven build output ───
+target/
+
+# ─── IDE files ───
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+*.swp
+
+# ─── OS junk ───
+.DS_Store
+Thumbs.db
+
+# ─── Data files (too large for Git) ───
+data/rides.csv
+data/rides.arff
+
+# ─── Persisted models ───
+models/*.model
+
+# ─── Logs ───
+*.log
