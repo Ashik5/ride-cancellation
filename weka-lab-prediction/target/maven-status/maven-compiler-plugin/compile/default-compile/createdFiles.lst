@@ -1,0 +1,4 @@
+com\example\weka\SerializationHelperWrapper.class
+com\example\weka\DataProcessing.class
+com\example\weka\ModelTraining.class
+com\example\weka\LabPredictionModel.class
