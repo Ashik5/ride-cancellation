@@ -33,7 +33,11 @@ public class Main {
             
             // STEP 8: Model Saving and Reloading
             Map.Entry<String, weka.classifiers.Classifier> champion = classifier.getChampion();
-            Evaluator.saveModel(champion.getValue(), champion.getKey(), "models/best_model.model");
+            if (champion != null) {
+                Evaluator.saveModel(champion.getValue(), champion.getKey(), "models/best_model.model");
+            } else {
+                System.out.println("⚠ No champion model to save.");
+            }
             
         } catch (Exception e) {
             System.err.println("Pipeline failed: " + e.getMessage());

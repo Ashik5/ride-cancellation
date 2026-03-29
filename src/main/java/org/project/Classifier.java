@@ -75,13 +75,27 @@ public class Classifier {
     public Map<String, weka.classifiers.Classifier> getTrainedModels() { return trainedModels; }
     public Map<String, Evaluation> getEvaluations() { return evaluations; }
 
-    /** Returns the classifier with the highest weighted F1-Score. */
+    /** Returns the classifier with the highest metric. */
     public Map.Entry<String, weka.classifiers.Classifier> getChampion() {
         String bestName = null;
-        double bestF1 = -1;
+        double bestScore = -1;
         for (var entry : evaluations.entrySet()) {
-            double f1 = entry.getValue().weightedFMeasure();
-            if (f1 > bestF1) { bestF1 = f1; bestName = entry.getKey(); }
+            double score = entry.getValue().weightedFMeasure();
+            if (Double.isNaN(score)) {
+                score = entry.getValue().pctCorrect() / 100.0; // fallback to accuracy
+            }
+            if (score > bestScore) { 
+                bestScore = score; 
+                bestName = entry.getKey(); 
+            }
+        }
+        
+        if (bestName == null && !evaluations.isEmpty()) {
+            bestName = evaluations.keySet().iterator().next();
+        }
+        
+        if (bestName == null || !trainedModels.containsKey(bestName)) {
+            return null;
         }
         return Map.entry(bestName, trainedModels.get(bestName));
     }
